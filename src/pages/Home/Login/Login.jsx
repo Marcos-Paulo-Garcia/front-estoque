@@ -15,9 +15,11 @@ function Login() {
 
       console.log("Login bem-sucedido:", response.data);
 
+
       // salva o token
       localStorage.setItem("token", response.data.access_token);
 
+      navigate("/inicio");
       alert("Login realizado com sucesso!");
     } catch (error) {
       console.erro("Erro ao logar:", erro);
