@@ -12,6 +12,7 @@ import ListarProdutos from "./pages/Home/listar_produto/listar_produto.jsx";
 import Venda from "./pages/Home/sale/sale.jsx";
 import EditarProduto from "./pages/Home/editar_produto/editar_produto.jsx";
 import DetalhesProduto from "./pages/Home/detalhes_produto/detalhes_produto.jsx";
+import ListarVendas from "./pages/Home/listar_vendas/listar_vendas.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -27,6 +28,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/sale" element={<Venda />} />
         <Route path="/produto/editar" element={<EditarProduto />} />
         <Route path="/produto/:id" element={<DetalhesProduto />} />
+        <Route path="/listar_vendas" element={<ListarVendas />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

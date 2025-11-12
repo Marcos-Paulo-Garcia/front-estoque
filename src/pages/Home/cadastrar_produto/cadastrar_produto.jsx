@@ -8,9 +8,9 @@ function CadastroProduto() {
     name: "",
     price: "",
     quantity: "",
-    image_url: "",
     status: "active",
   });
+  const [imageFile, setImageFile] = useState(null);
 
   const navigate = useNavigate();
 
@@ -18,15 +18,30 @@ function CadastroProduto() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
+  function handleFileChange(e) {
+    setImageFile(e.target.files[0]);
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      const response = await api.post("/product", formData);
+      const data = new FormData();
+      data.append("name", formData.name);
+      data.append("price", formData.price);
+      data.append("quantity", formData.quantity);
+      data.append("status", formData.status);
+      if (imageFile) {
+        data.append("image", imageFile); // 🔹 campo que o backend deve aceitar
+      }
+
+      const response = await api.post("/product", data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
       alert("Produto cadastrado com sucesso!");
       console.log(response.data);
 
-      // Redireciona para a lista de produtos, por exemplo
       navigate("/inicio");
     } catch (error) {
       console.error(error);
@@ -66,21 +81,22 @@ function CadastroProduto() {
           required
         />
 
+        {/* 🔹 Novo campo de upload de arquivo */}
         <input
-          name="image_url"
-          placeholder="URL da imagem (opcional)"
-          value={formData.image_url}
-          onChange={handleChange}
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
         />
+
         <button type="submit">Confirmar</button>
       </form>
+
       <div>
         <button className="botao-voltar" onClick={() => navigate("/inicio")}>
-              ← Voltar
+          ← Voltar
         </button>
       </div>
     </div>
-    
   );
 }
 
