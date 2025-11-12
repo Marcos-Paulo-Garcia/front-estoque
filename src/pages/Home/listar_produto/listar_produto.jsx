@@ -26,8 +26,8 @@ function ListarProdutos() {
     navigate(`/produto/${id}`);
   };
 
-  const handleEditar = (id) => {
-    navigate(`/produto/editar/${id}`);
+  const handleEditar = (produto) => {
+    navigate(`/produto/editar`, { state: { produto } });
   };
 
   const handleInativar = async (id) => {
@@ -66,7 +66,7 @@ function ListarProdutos() {
               </span>
 
               <div className="botoes">
-                <button onClick={() => handleEditar(produto.id)}>Editar</button>
+                <button onClick={() => handleEditar(produto)}>Editar</button>
                 <button
                   className="inativar"
                   onClick={() => handleInativar(produto.id)}
@@ -81,6 +81,11 @@ function ListarProdutos() {
             </div>
           ))
         )}
+      </div>
+      <div>
+        <button className="botao-voltar" onClick={() => navigate("/inicio")}>
+              ← Voltar
+        </button>
       </div>
     </div>
   );

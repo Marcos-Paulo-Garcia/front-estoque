@@ -53,7 +53,7 @@ function Ativar() {
     setLoading(true);
     setMessage("");
     try {
-      const res = await api.post("/user/ativar", { number , code: code.join("")
+      const res = await api.post("/user/ativar", { number , code: code.join("").toString()
       });
 
       if (res.status === 200) {

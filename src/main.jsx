@@ -10,7 +10,8 @@ import Inicio from "./pages/Home/inicio/inicio.jsx";
 import CadastroProduto from "./pages/Home/cadastrar_produto/cadastrar_produto.jsx";
 import ListarProdutos from "./pages/Home/listar_produto/listar_produto.jsx";
 import Venda from "./pages/Home/sale/sale.jsx";
-
+import EditarProduto from "./pages/Home/editar_produto/editar_produto.jsx";
+import DetalhesProduto from "./pages/Home/detalhes_produto/detalhes_produto.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -24,6 +25,8 @@ createRoot(document.getElementById("root")).render(
         <Route path="/cadastrar_produto" element={<CadastroProduto />} />
         <Route path="/listar_produto" element={<ListarProdutos />} />
         <Route path="/sale" element={<Venda />} />
+        <Route path="/produto/editar" element={<EditarProduto />} />
+        <Route path="/produto/:id" element={<DetalhesProduto />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

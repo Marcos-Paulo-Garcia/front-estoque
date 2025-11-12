@@ -6,7 +6,8 @@ import "./sale.css";
 function Venda() {
   const [formData, setFormData] = useState({
     produtoId: "",
-    quantidade: ""
+    quantidade: "",
+    preco: "" // novo campo
   });
 
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ function Venda() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await api.post("/sales", formData, {
+      const response = await api.post("/sale", formData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -62,8 +63,23 @@ function Venda() {
           required
         />
 
+        <input
+          name="preco"
+          type="number"
+          step="0.01"
+          placeholder="Preço da venda"
+          value={formData.preco}
+          onChange={handleChange}
+          required
+        />
+
         <button type="submit">Confirmar Venda</button>
       </form>
+      <div>
+        <button className="botao-voltar" onClick={() => navigate("/inicio")}>
+              ← Voltar
+        </button>
+      </div>
     </div>
   );
 }

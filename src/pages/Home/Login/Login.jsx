@@ -1,11 +1,13 @@
 import { useState } from "react";
 import api from "../../../services/api";
+import {useNavigate } from "react-router-dom";
 import "./style.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [erro, setErro] = useState("");
+  const navigate = useNavigate();
 
   async function handleLogin(e) {
     e.preventDefault();

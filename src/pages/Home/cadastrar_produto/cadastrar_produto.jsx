@@ -72,18 +72,15 @@ function CadastroProduto() {
           value={formData.image_url}
           onChange={handleChange}
         />
-        <input
-          name="seller_id"
-          type="number"
-          placeholder="ID do vendedor"
-          value={formData.seller_id}
-          onChange={handleChange}
-          required
-        />
-
         <button type="submit">Confirmar</button>
       </form>
+      <div>
+        <button className="botao-voltar" onClick={() => navigate("/inicio")}>
+              ← Voltar
+        </button>
+      </div>
     </div>
+    
   );
 }
 
