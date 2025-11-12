@@ -43,7 +43,7 @@ function ListarVendas() {
               <div className="info">
                 <p><strong>ID do Produto:</strong> {venda.product_id}</p>
                 <p><strong>Nome:</strong> {venda.product_name}</p>
-                <p><strong>Preço vendido:</strong> R$ {Number(venda.price).toFixed(2)}</p>
+                <p><strong>Preço vendido:</strong> R$ {Number(venda.preco).toFixed(2)}</p>
                 <p><strong>Data e hora:</strong> {formatarData(venda.date)}</p>
               </div>
             </div>

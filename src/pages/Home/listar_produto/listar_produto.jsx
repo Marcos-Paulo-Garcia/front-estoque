@@ -18,7 +18,6 @@ function ListarProdutos() {
         setErro("Erro ao carregar produtos!");
       }
     }
-
     fetchProdutos();
   }, []);
 
@@ -57,13 +56,25 @@ function ListarProdutos() {
         ) : (
           produtos.map((produto) => (
             <div key={produto.id} className="produto-item">
-              <span
-                className={
-                  produto.status === "inactive" ? "inativo" : "ativo"
-                }
-              >
-                {produto.name}
-              </span>
+              <div className="produto-info">
+                {/* Foto do produto */}
+                {produto.image_url ? (
+                  <img
+                    src={produto.image_url}
+                    alt={produto.name}
+                    className="produto-imagem"
+                  />
+                ) : (
+                  <div className="imagem-placeholder">📦</div>
+                )}
+                <span
+                  className={
+                    produto.status === "inactive" ? "inativo" : "ativo"
+                  }
+                >
+                  {produto.name}
+                </span>
+              </div>
 
               <div className="botoes">
                 <button onClick={() => handleEditar(produto)}>Editar</button>
@@ -82,9 +93,10 @@ function ListarProdutos() {
           ))
         )}
       </div>
+
       <div>
         <button className="botao-voltar" onClick={() => navigate("/inicio")}>
-              ← Voltar
+          ← Voltar
         </button>
       </div>
     </div>
