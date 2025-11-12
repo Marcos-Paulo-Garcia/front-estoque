@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import api from "../../../services/api";
 import "./ativar.css";
 
 function Ativar() {
@@ -52,19 +53,14 @@ function Ativar() {
     setLoading(true);
     setMessage("");
     try {
-      const res = await fetch("http://localhost:5000/user/ativar", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ number, code: code.join("") }),
+      const res = await api.post("/user/ativar", { number , code: code.join("")
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
+      if (res.status === 200) {
         setMessage("Usuário ativado com sucesso!");
         setTimeout(() => navigate("/login"), 1500);
       } else {
-        setMessage(data.message || "Erro ao ativar usuário.");
+        setMessage(res.data.message || "Erro ao ativar usuário.");
       }
     } catch (err) {
       console.error(err);

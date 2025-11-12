@@ -10,7 +10,6 @@ function CadastroProduto() {
     quantity: "",
     image_url: "",
     status: "active",
-    seller_id: ""
   });
 
   const navigate = useNavigate();
