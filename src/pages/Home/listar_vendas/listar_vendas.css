@@ -66,3 +66,18 @@ h1 {
   margin-top: 10px;
   font-size: 14px;
 }
+
+.btn-inativar {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.2s;
+}
+
+.btn-inativar:hover {
+  background-color: #c9302c;
+}

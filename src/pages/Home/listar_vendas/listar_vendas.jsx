@@ -22,6 +22,20 @@ function ListarVendas() {
     fetchVendas();
   }, []);
 
+  async function inativarVenda(id) {
+    try {
+      await api.put(`/sale/${id}/inactivate`);
+
+      // Atualiza o estado removendo a venda inativada
+      setVendas(prev => prev.filter(v => v.id !== id));
+
+      alert("Venda inativada e estoque atualizado!");
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao inativar a venda");
+    }
+  }
+
   function formatarData(dateString) {
     if (!dateString) return "Data inválida";
     const data = new Date(dateString);
@@ -41,11 +55,19 @@ function ListarVendas() {
           vendas.map((venda, index) => (
             <div key={index} className="produto-item">
               <div className="info">
+                <p><strong>ID da Venda:</strong> {venda.id}</p>
                 <p><strong>ID do Produto:</strong> {venda.product_id}</p>
                 <p><strong>Nome:</strong> {venda.product_name}</p>
                 <p><strong>Preço vendido:</strong> R$ {Number(venda.preco).toFixed(2)}</p>
                 <p><strong>Data e hora:</strong> {formatarData(venda.date)}</p>
               </div>
+
+              <button 
+                className="btn-inativar"
+                onClick={() => inativarVenda(venda.id)}
+              >
+                Inativar Venda
+              </button>
             </div>
           ))
         )}
