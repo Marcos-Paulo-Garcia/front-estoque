@@ -13,6 +13,10 @@ function ListarVendas() {
       try {
         const res = await api.get("/sale");
         setVendas(res.data.vendas || []);
+
+        const vendasAtivas = (res.data.vendas || []).filter(v => v.status === "ativo");
+        setVendas(vendasAtivas);
+
       } catch (error) {
         console.error(error);
         setErro("Erro ao carregar vendas!");
@@ -26,7 +30,6 @@ function ListarVendas() {
     try {
       await api.put(`/sale/${id}/inactivate`);
 
-      // Atualiza o estado removendo a venda inativada
       setVendas(prev => prev.filter(v => v.id !== id));
 
       alert("Venda inativada e estoque atualizado!");
@@ -55,7 +58,6 @@ function ListarVendas() {
           vendas.map((venda, index) => (
             <div key={index} className="produto-item">
               <div className="info">
-                <p><strong>ID da Venda:</strong> {venda.id}</p>
                 <p><strong>ID do Produto:</strong> {venda.product_id}</p>
                 <p><strong>Nome:</strong> {venda.product_name}</p>
                 <p><strong>Preço vendido:</strong> R$ {Number(venda.preco).toFixed(2)}</p>
